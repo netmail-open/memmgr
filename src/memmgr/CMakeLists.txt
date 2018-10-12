@@ -1,0 +1,33 @@
+add_library(${TARGET_NAME} SHARED
+	memmgr.c
+	str.c
+	thread.c
+	xplmain.c
+)
+
+#set (CMAKE_C_FLAGS
+#	"${CMAKE_C_FLAGS}
+#	${ALL_CFLAGS}
+#	${PTHREAD_CFLAGS}"
+#)
+
+target_link_libraries(${TARGET_NAME}
+	${WINSOCK_LIBS}
+	${PTHREAD_LIBS}
+)
+
+
+SET_TARGET_PROPERTIES(
+	${TARGET_NAME}
+	PROPERTIES
+	VERSION 1.0.0
+	SOVERSION 1
+	INSTALL_NAME_DIR "${LIB_DEST_DIR}"
+	LINK_FLAGS "-lpthread -ldl"
+)
+
+install(TARGETS ${TARGET_NAME}
+	EXPORT memmgr
+	LIBRARY DESTINATION ${LIB_DEST_DIR}
+	ARCHIVE DESTINATION ${LIB_DEST_DIR}
+)

@@ -1,0 +1,93 @@
+
+#######################################
+#
+# check For header files
+#
+#######################################
+#TODO sort
+
+check_include_files(ansidecl.h								HAVE_ANSIDECL_H)
+check_include_files(bn.h									HAVE_BN_H)
+check_include_files(crypto.h								HAVE_CRYPTO_H)
+check_include_files(endian.h								HAVE_ENDIAN_H)
+check_include_files(gmp.h									HAVE_GMP_H)
+check_include_files(libintl.h								HAVE_LIBINTL_H)
+check_include_files(openssl/bn.h							HAVE_OPENSSL_BN_H)
+check_include_files(openssl/crypto.h						HAVE_OPENSSL_CRYPTO_H)
+check_include_files(string.h								HAVE_STRING_H)
+check_include_files(memory.h								HAVE_MEMORY_H)
+check_include_files(semaphore.h								HAVE_SEMAPHORE_H)
+check_include_files(inttypes.h								HAVE_INTTYPES_H)
+check_include_files(stdint.h								HAVE_STDINT_H)
+check_include_files(sys/intypes.h							HAVE_SYS_INTTYPES_H)
+check_include_files(sys/param.h								HAVE_SYS_PARAM_H)
+check_include_files(sys/sysinfo.h							HAVE_SYS_SYSINFO_H)
+check_include_files(sys/mount.h								HAVE_SYS_MOUNT_H)
+check_include_files(sys/statvfs.h							HAVE_SYS_STATVFS_H)
+check_include_files(sys/vfs.h								HAVE_SYS_VFS_H)
+check_include_files(sys/stat.h								HAVE_SYS_STAT_H)
+check_include_files(sys/types.h								HAVE_SYS_TYPES_H)
+check_include_files(sys/wait.h								HAVE_SYS_WAIT_H)
+check_include_files(sys/socket.h							HAVE_SYS_SOCKET_H)
+check_include_files(unistd.h								HAVE_UNISTD_H)
+check_include_files(dlfcn.h									HAVE_DLFCN_H)
+check_include_files(resolv.h								HAVE_RESOLV_H)
+check_include_files(syslog.h								HAVE_SYSLOG_H)
+check_include_files(zlib.h									HAVE_ZLIB_H)
+check_include_files(netinet/in.h							HAVE_NETINET_IN_H)
+check_include_files(dirent.h								HAVE_DIRENT_H)
+check_include_files(direct.h								HAVE_DIRECT_H)
+check_include_files(stdlib.h								HAVE_STDLIB_H)
+check_include_files(strings.h								HAVE_STRINGS_H)
+check_include_files(python3.0/Python.h						HAVE_PYTHON_H)
+check_include_files(valgrind/valgrind.h						HAVE_VALGRIND_H)
+check_include_files(sys/mman.h								HAVE_MMAN_H)
+check_include_files(dns_sd.h								HAVE_DNS_SD_H)
+
+
+#check_include_files("xmlsec/xmlsec.h;xmlsec/openssl/app.h" HAVE_XMLSEC_H)
+#check_include_files(xmlsec1/xmlsec/openssl/app.h			HAVE_XMLSEC_OPENSSL_APP_H)
+#check_include_files(xmlsec1/xmlsec/openssl/bn.h			HAVE_Xbn_H)
+#check_include_files(xmlsec1/xmlsec/openssl/crypto.h		HAVE_Xcrypto_H)
+#check_include_files(xmlsec1/xmlsec/openssl/evp.h			HAVE_Xevp_H)
+#check_include_files(xmlsec1/xmlsec/openssl/symbols.h		HAVE_Xsymbol_H)
+#check_include_files(xmlsec1/xmlsec/openssl/x509.h			HAVE_Xx509_H)
+
+# check fuctions
+
+
+
+check_symbol_exists(strtoll			"stdlib.h"				HAVE_STRTOLL)
+check_symbol_exists(_strtoi64		"stdlib.h"				HAVE__STRTOI64)
+check_symbol_exists(strtoull		"stdlib.h"				HAVE_STRTOULL)
+check_symbol_exists(_strtoui64		"stdlib.h"				HAVE__STRTOUI64)
+check_symbol_exists(atoll           "stdlib.h"				HAVE_ATOLL)
+check_symbol_exists(_atoi64         "stdlib.h"				HAVE__ATOI64)
+
+
+
+check_symbol_exists(snprintf		"stdio.h"				HAVE_SNPRINTF)
+
+# Theses do not work in _MSC_VER TODO FIX
+check_symbol_exists(stricmp			"strings.h;string.h"	HAVE_STRICMP)
+check_symbol_exists(strnicmp		"strings.h;string.h"	HAVE_STRNICMP)
+
+check_symbol_exists(strcasecmp		"strings.h"				HAVE_STRCASECMP)
+check_symbol_exists(strncasecmp		"strings.h"				HAVE_STRNCASECMP)
+check_symbol_exists(gettimeofday	"sys/time.h"			HAVE_GETTIMEOFDAY)
+check_symbol_exists(fsync			"unistd.h"				HAVE_FSYNC)
+check_symbol_exists(fflush			"stdio.h"				HAVE_FFLUSH)
+check_symbol_exists(statfs			"sys/vfs.h"				HAVE_STATFS)
+check_symbol_exists(statvfs			"sys/statvfs.h"			HAVE_STATVFS)
+check_symbol_exists(getpagesize		"unistd.h"				HAVE_GETPAGESIZE)
+
+if(WATCOM)
+	check_symbol_exists(Sleep		"windows.h;nt/winbase.h"
+															HAVE_SLEEP)
+else(WATCOM)
+	check_symbol_exists(Sleep		"WinBase.h"				HAVE_SLEEP)
+endif(WATCOM)
+
+check_symbol_exists(_snprintf		"stdio.h"				HAVE__SNPRINTF)
+check_symbol_exists(_vsnprintf		"stdio.h"				HAVE__VSNPRINTF)
+check_symbol_exists(vsnprintf		"stdio.h"				HAVE_VSNPRINTF)

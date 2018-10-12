@@ -1,0 +1,289 @@
+/* config.h for win32 */
+#include<revision.h>
+
+#define WINDOWS 1
+
+/* The name of the gettext domain */
+#define GETTEXT_PACKAGE "hula"
+
+#define DRIVER_EXTENSION ".dll"
+
+#include<productversion.h>
+
+/* Define to 1 if you have the `consoleprintf' function. */
+/* #undef HAVE_CONSOLEPRINTF */
+
+/* Define to 1 if you have the `CreateScreen' function. */
+/* #undef HAVE_CREATESCREEN */
+
+/* Define to 1 if you have the `delay' function. */
+/* #undef HAVE_DELAY */
+
+#define HAVE_SLEEP 1
+
+/* Define to 1 if you have the `DestroyScreen' function. */
+/* #undef HAVE_DESTROYSCREEN */
+
+/* Define to 1 if you have the `DisplayScreen' function. */
+/* #undef HAVE_DISPLAYSCREEN */
+
+/* Define to 1 if you have the <dlfcn.h> header file. */
+/*#define HAVE_DLFCN_H 1*/
+
+/* Define to 1 if you have the `dlopen' function. */
+/* #undef HAVE_DLOPEN */
+
+/* Define to 1 if you have the `dlsym' function. */
+/* #undef HAVE_DLSYM */
+
+/* Define to 1 if you have the `dos2calendar' function. */
+/* #undef HAVE_DOS2CALENDAR */
+
+/* Define to 1 if you have the `FEFlushWrite' function. */
+/* #undef HAVE_FEFLUSHWRITE */
+
+/* Define to 1 if you have the `fflush' function. */
+#define HAVE_FFLUSH 1
+
+/* Define to 1 if you have the `fsync' function. */
+/*#define HAVE_FSYNC 1*/
+
+/* Define to 1 if you have the `getpwnam_r' function. */
+/*#define HAVE_GETPWNAM_R 1*/
+
+/* Define to 1 if you have the `gettimeofday' function. */
+/*#define HAVE_GETTIMEOFDAY 1*/
+
+/* Define to 1 if you have the `gotoxy' function. */
+/* #undef HAVE_GOTOXY */
+
+/* Define to 1 if you have the `HideInputCursor' function. */
+/* #undef HAVE_HIDEINPUTCURSOR */
+
+/* Define to 1 if you have the <inttypes.h> header file. */
+/*#define HAVE_INTTYPES_H 1 */
+
+/* Define to 1 if you have the `form' library (-lform). */
+/* #undef HAVE_LIBFORM */
+
+/* Define to 1 if you have the `menu' library (-lmenu). */
+/* #undef HAVE_LIBMENU */
+
+/* Define to 1 if you have the <memory.h> header file. */
+/*#define HAVE_MEMORY_H 1*/
+
+/* Define to 1 if you have the `RingTheBell' function. */
+/* #undef HAVE_RINGTHEBELL */
+
+/* Define to 1 if you have the `SetCurrentScreen' function. */
+/* #undef HAVE_SETCURRENTSCREEN */
+
+/* Define to 1 if you have the `statfs' function. */
+/*#define HAVE_STATFS 1*/
+
+/* Define to 1 if you have the `statvfs' function. */
+/* #define HAVE_STATVFS 1 */
+
+/* Define to 1 if you have the <stdint.h> header file. */
+/*#define HAVE_STDINT_H 1*/
+
+/* Define to 1 if you have the <stdlib.h> header file. */
+#define HAVE_STDLIB_H 1
+
+/* Define to 1 if you have the `strcasecmp' function. */
+/* #define HAVE_STRCASECMP 1 */
+
+/* Define to 1 if you have the `stricmp' function. */
+#define HAVE_STRICMP 1
+
+/* Define to 1 if you have the <strings.h> header file. */
+#define HAVE_STRINGS_H 1
+
+/* Define to 1 if you have the <string.h> header file. */
+#define HAVE_STRING_H 1
+
+/* Define to 1 if you have the `strncasecmp' function. */
+/* #define HAVE_STRNCASECMP 1 */
+
+/* Define to 1 if you have the `strnicmp' function. */
+#define HAVE_STRNICMP 1
+#define HAVE_STRTOLL 1
+#define HAVE_STRTOULL 1
+
+/* Define to 1 if you have the <syslog.h> header file. */
+/* #define HAVE_SYSLOG_H */
+
+/* Define to 1 if you have the <sys/mount.h> header file. */
+/* #define HAVE_SYS_MOUNT_H 1 */
+
+/* Define to 1 if you have the <sys/param.h> header file. */
+/* #define HAVE_SYS_PARAM_H 1 */
+
+/* Define to 1 if you have the <sys/statvfs.h> header file. */
+/* #undef HAVE_SYS_STATVFS_H */
+
+/* Define to 1 if you have the <sys/stat.h> header file. */
+#define HAVE_SYS_STAT_H 1
+
+/* Define to 1 if you have the <sys/sys/mount.h> header file. */
+/* #undef HAVE_SYS_SYS_MOUNT_H */
+
+/* Define to 1 if you have the <sys/types.h> header file. */
+/* #undef HAVE_SYS_TYPES_H */
+
+/* Define to 1 if you have the <sys/vfs.h> header file. */
+/* #undef HAVE_SYS_VFS_H 1 */
+
+/* Define to 1 if you have the `ungetcharacter' function. */
+/* #undef HAVE_UNGETCHARACTER */
+
+/* Define to 1 if you have the <unistd.h> header file. */
+/* #undef HAVE_UNISTD_H */
+
+/* Define to 1 if you have the `vsnprintf' function. */
+/*#define HAVE_VSNPRINTF 1*/
+
+/* Define to 1 if you have the `_commit' function. */
+/* #define HAVE__COMMIT 1 */
+
+/* Define to 1 if you have the `fflush' function. */
+#define HAVE_FFLUSH 1
+
+/* Define to 1 if you have the `_ConvertDOSTimeToCalendar' function. */
+/* #undef HAVE__CONVERTDOSTIMETOCALENDAR */
+
+/* Define to 1 if you have the `_vsnprintf' function. */
+#define HAVE__VSNPRINTF 1
+
+/* The username which hula runs as. */
+#define HULA_USER ""
+
+/* Name of package */
+#define PACKAGE "hula"
+
+/* Define to the address where bug reports for this package should be sent. */
+#define PACKAGE_BUGREPORT ""
+
+/* Define to the full name of this package. */
+#define PACKAGE_NAME ""
+
+/* Define to the full name and version of this package. */
+#define PACKAGE_STRING ""
+
+/* Define to the one symbol short name of this package. */
+#define PACKAGE_TARNAME ""
+
+/* Define to the version of this package. */
+#define PACKAGE_VERSION ""
+
+/* Define to 1 if you have the ANSI C header files. */
+#define STDC_HEADERS 1
+
+/* Version number of package */
+#define VERSION "0.1.0"
+
+/* Define to 1 if your processor stores words with the most significant byte
+   first (like Motorola and SPARC, unlike Intel and VAX). */
+/* #undef WORDS_BIGENDIAN */
+
+/* Whether the system is big endian */
+#define XPL_BIG_ENDIAN 0
+
+#define XPL_BASE_DIR		".."
+#define XPL_VAR_DIR					XPL_BASE_DIR "/var"
+#define XPL_ETC_DIR					XPL_BASE_DIR "/etc"
+
+#if defined (WINDOWS)
+# define XPL_DEFAULT_LIB_DIR		XPL_BASE_DIR "/sbin"
+#else
+# define XPL_DEFAULT_LIB_DIR		XPL_BASE_DIR "/lib"
+#endif
+
+#define XPL_DATA_DIR				".."
+#define XPL_DATA_VAR_DIR			XPL_DATA_DIR "/var"
+//#define XPL_DATA_ETC_DIR			XPL_DATA_DIR "/etc"
+
+
+#define XPL_DEFAULT_BIN_DIR			XPL_BASE_DIR "/sbin"
+#define XPL_DEFAULT_DOCROOT_DIR		XPL_VAR_DIR "/docroot"
+#define XPL_DEFAULT_LAUNCHER_DIR	XPL_DATA_VAR_DIR "/launcher"
+#define XPL_ENGINES_DIR				XPL_VAR_DIR "/engines"
+#define XPL_DEFAULT_LOGS_DIR		XPL_DATA_VAR_DIR "/logs"
+#define XPL_DEFAULT_LOGGING_DIR		XPL_DATA_VAR_DIR "/logging"
+#define XPL_DEFAULT_KNOW_SCHEMA_DIR	XPL_VAR_DIR  "/schema"
+
+#define XPL_DEFAULT_WORK_DIR		"tmp"
+
+#define XPL_DEFAULT_DBF_DIR		XPL_DATA_VAR_DIR "/dbf"
+
+#define XPL_DEFAULT_SCMS_DIR		XPL_DATA_VAR_DIR "/scms"
+#define XPL_DEFAULT_SPOOL_DIR		XPL_DATA_VAR_DIR "/spool" //find usage
+#define XPL_DEFAULT_MAIL_DIR		XPL_DATA_VAR_DIR "/users" //find usage
+#define XPL_DEFAULT_CERT_PATH		XPL_DEFAULT_DBF_DIR "/osslcert.pem"
+#define XPL_DEFAULT_KEY_PATH		XPL_DEFAULT_DBF_DIR "/osslpriv.pem"
+#define SYS_DATA_DIR				XPL_DEFAULT_DBF_DIR "/warp.system.data"
+
+
+// bad name:
+#define SYSCONF_DIR				XPL_DATA_DIR "/etc"
+#define XPL_SCRIPTS_DIR				XPL_ETC_DIR "/scripts"
+
+
+#if 0
+/* Default binary directory */
+#define	XPL_DEFAULT_BIN_DIR			"../sbin"
+#define	SYSCONF_DIR					"../etc"
+
+/* Default cert path */
+#define	XPL_DEFAULT_CERT_PATH		    "../dbf/osslcert.pem"
+
+/* Default dbf directory */
+#define	XPL_DEFAULT_DBF_DIR			"../dbf"
+
+/* Default key path */
+#define XPL_DEFAULT_KEY_PATH "../dbf/osslpriv.pem"
+
+/* Default library directory */
+#define XPL_DEFAULT_LIB_DIR "../sbin"
+
+/* Default library directory */
+#define XPL_ENGINES_DIR "../sbin"
+
+/* Default mail directory */
+#define XPL_DEFAULT_MAIL_DIR "../users"
+
+/* Default index directory */
+#define XPL_DEFAULT_INDEX_DIR "../index"
+
+/* Default scms directory */
+#define XPL_DEFAULT_NLS_DIR "../nls"
+
+/* Default scms directory */
+#define XPL_DEFAULT_SCMS_DIR "../scms"
+
+/* Default spool directory */
+#define XPL_DEFAULT_SPOOL_DIR "../spool"
+
+/* Default work directory */
+#define XPL_DEFAULT_WORK_DIR "../work"
+
+#define XPL_DEFAULT_DOCROOT_DIR "../../src/docroot"
+#define SYS_DATA_DIR XPL_DEFAULT_DBF_DIR "/warp.system.data"
+
+#define XPL_DEFAULT_LOGGING_DIR "../logs"
+
+#define XPL_DATA_DIR "../data"
+#endif
+
+/* Whether the system is little endian */
+#define XPL_LITTLE_ENDIAN 1
+
+#define HAVE__SNPRINTF 1
+#ifndef SQLITE_PTR_SZ
+#define SQLITE_PTR_SZ 4
+
+#define XPL_BASE_DIR ".."
+#define MPLUS_USER "root"
+
+#endif
+

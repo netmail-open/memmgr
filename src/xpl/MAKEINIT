@@ -1,0 +1,7 @@
+TOP		= ..\..\..
+TARGET		= dll
+NAME		= libhulaxpl
+OBJECTS		= auth.obj cfgfile.obj dir.obj elf.obj err.obj fsys.obj mem.obj rwlock.obj xplalarm.obj xpllog.obj proc.obj process.obj procwin.obj wrap.obj
+LIBRARIES	= $(LIB_MEMMGR) psapi.lib
+
+!include $(TOP)\watcom\\top.mak

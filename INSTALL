@@ -1,0 +1,33 @@
+Compile and install memmgr:
+
+$ mkdir build
+$ cd build
+$ cmake ..
+$ make
+# make install
+
+You might want to specify a lib path:
+$ cmake -DLIB_DEST_DIR=/usr/local/lib64
+
+You may also use:
+$ cmake-gui ..
+...or...
+$ ccmake ..
+instead of cmake.
+
+
+Use it in your program:
+  #include <memmgr.h>
+  ...
+    MemoryManagerOpen("unique");
+    buffer = MemMalloc(length);
+	...
+	MemRelase(&buffer);
+    MemoryManagerClose("unique");
+
+Link against it in your project/build:
+  -lmemmgr
+
+
+By default, memmgr will install to /usr/local.  If linking fails to find
+memmgr immediately after installation, you may need to run ldconfig.

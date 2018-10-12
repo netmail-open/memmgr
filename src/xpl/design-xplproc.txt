@@ -1,0 +1,70 @@
+==============================================================================
+XplProc
+==============================================================================
+As netmail platform tools combine in new ways to improve and introduce new
+products, the need for such tools to be cross-platform increases.  Rather than
+using fork+exec, or even the overly-complex XplProcess calls, it's time for
+a new, compact library to provide OS-independant "run this command"
+functionality.
+
+
+------------------------------------------------------------------------------
+API Overview
+------------------------------------------------------------------------------
+The main structure for XplProc will expose a spawned process's stdin/out/err
+streams as standard FILE * handles, for maximum flexibility and minimal API:
+
+typedef struct {
+	FILE *stdin;
+	FILE *stdout;
+	FILE *stderr;
+	...
+	/* non-public state/handles, pid etc */
+} XPLPROC;
+
+The API itself is very brief - begin a process, signal it, join it, free it:
+
+XPLPROC *XplProcExec(const char *path, const char **args);
+int XplProcExecDetached(const char *path, const char **args);
+int XplProcSignal(XPLPROC *p, int signal);
+int XplProcJoin(XPLPROC *p, int *ret);
+int XplProcFree(XPLPROC **p);
+void XplProcFlush(XPLPROC *p);
+
+The "join" convention is consistent with threads, and with some other
+implementations of process control.
+
+XplProcFree will join a process if it was XplProcExec'd as joinable, and
+return the process's return code.  Non-joinable processes will be abandoned.
+In all cases the XPLPROC structure will be freed.
+
+XplProcFlush should only be called once.   p->stdIn will be null after it is
+called.
+
+------------------------------------------------------------------------------
+Executable extensions
+------------------------------------------------------------------------------
+
+In an effort to ensure that consumers of this library can be used on multiple
+platforms with as little platform specific code as possible executable
+extensions will be handled automatically when possible while following the
+conventions of that platform.
+
+Since executables rarely have an extension on linux no special code will be
+needed in that case.
+
+On windows the PATHEXT environment variable contains a semicolon separated list
+of file extensions to be used for executables. If the filename portion of path
+passed to XplProcExec() does not contain an extension then each extension listed
+in the PATHEXT environment variable will be tried until a match is found.
+
+This will allow many consumers of this library to behave exactly the same on
+both platforms.
+
+==============================================================================
+Work Breakdown/Schedule
+==============================================================================
+- XplProc: header - structure, prototypes                         2h
+- XplProc: linux functions (borrow pieces from XplProcess)        4h
+- XplProc: windows functions                                      1d
+- XPLProc: unit tests                                             1d

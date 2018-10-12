@@ -1,0 +1,6 @@
+#ifndef XPLUTIL_ASSERT_H
+#define XPLUTIL_ASSERT_H
+
+#define ASSERT_TYPE_${ASSERT_TYPE}	1
+
+#endif

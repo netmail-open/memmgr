@@ -1,0 +1,9 @@
+TOP			= ..\..\..
+TARGET		= dll
+NAME		= libhulamemmgr
+OBJECTS		= memmgr.obj thread.obj str.obj xplmain.obj
+LIBRARIES	=
+
+!include $(TOP)\watcom\\top.mak
+
+

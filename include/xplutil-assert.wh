@@ -1,0 +1,7 @@
+#ifndef __XPLUTILASSERT_H__
+#define __XPLUTILASSERT_H__
+
+#define DEBUG_ASSERT_CRASH	1
+
+#endif
+

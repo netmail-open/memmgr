@@ -1,0 +1,2 @@
+addlib(memmgr)
+addlib(xpl)
