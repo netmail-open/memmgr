@@ -7,6 +7,9 @@ It was created to increase performance in programs which request
 and free memory at such high volumes that OS-level malloc/calloc
 calls become a bottleneck.
 
+MemMgr also has features which are helpful in hunting down
+memory-related bugs such as leaks and buffer overruns.
+
 
 License
 -------
@@ -15,6 +18,11 @@ MemMgr is available under the terms of the GNU Lesser General Public License,
 any version(!).  See COPYING and COPYING.LESSER for the latest full license
 texts.
 
+
+Documentation
+-------------
+
+See INSTALL for a quick installation guide and basic usage/linking.
 See documentation/ for details, examples and API reference.
 
 
