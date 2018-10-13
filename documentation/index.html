@@ -1,0 +1,111 @@
+<html>
+<head>
+<title>Memory Manager (memmgr) Documentation: index</title>
+</head>
+<body>
+
+<h1>About</h1>
+<p>
+MemMgr - high-performance slabbed memory management in C
+</p>
+<p>
+  Memory Manager is a high-performance memory allocation library
+  developed by NetGovern (aka Netmail, aka Messaging Architects).
+  It was created to increase performance in programs which request
+  and free memory at such high volumes that OS-level malloc/calloc
+  calls become a bottleneck.
+</p>
+<p>
+  MemMgr ("MM" if one is in a rush!) makes use of, and includes,
+  XPL.  XPL is a cross-platform library which abstracts various OS
+  functions and dates back to when Netmail was NIMS and ran on,
+  among other things, Novell Netware.  There is naturally a certain
+  amount of historical memorabilia here.  XPL might (and perhaps should)
+  be split off into a separate project as an optional dependency for
+  memmgr.
+</p>
+<p>
+  MemMgr has two main modes of operation:
+<ul>
+<li>
+  Slabber - Memory is allocated in page-aligned, speed- and
+  memory-optimized slabs.  Repeated calls to MemMalloc() etc are much
+  faster than allocating directly.
+</li>
+<li>
+  Guard - Memory is not speed-optimized.  Each created buffer is
+  padded on either end with bytes which are easy to spot in a debugger,
+  to help hunt down and fix tricky bugs.  It is no substitute for
+  <a href="http://valgrind.org">valgrind</a>, but is much faster
+  both in setup time (change a #define) and in execution.  (MemMgr can
+  also work side-by-side with valgrind, and take measures to prevent its
+  own assertions from triggering valgrind's invalid-read checks, etc.
+</li>
+</ul>
+</p>
+<p>
+  Regardless of operating mode, MemMgr can detect and report memory leaks,
+  and this reporting can be customized so that various consumers can
+  specify "owners" of given allocations.
+</p>
+
+<h1>License</h1>
+<p>
+Memory Manager and its related libraries may be consumed in any project,
+open or closed, as outlined by the
+<a href="http://www.gnu.org/licenses/lgpl.txt">GNU Lesser
+General Public License</a> (any version).
+Include it as-is and link to it
+from your code, massage it into your own statically-linked package, or use it
+in ways we haven't thought of.  Read the docs/headers, have fun, and if you
+use it for something awesome, let us know about it!  :^)
+</p>
+
+<h1>API</h1>
+<p>
+<ul>
+<li>
+<a href="memmgr.html">
+MemMgr
+</a> - optimized memory management
+</li>
+<li>
+<a href="xpl.html">
+XPL
+</a> - cross-platform utility library
+</li>
+</ul>
+</p>
+
+<!--
+<h1>Quirks</h1>
+<p>
+</p>
+<p>
+<ul>
+</ul>
+</p>
+<p>
+</p>
+-->
+
+<h1>Special Thanks</h1>
+<p>
+<ul>
+<li>Thane Diamond - primary memmgr and XPL author</li>
+</ul>
+</p>
+<h1>Contact</h1>
+<p>
+<ul>
+<li>
+<a href="mailto:owens@netmail.com">
+Owen Swerkstrom &lt;owens@netmail.com&gt;
+</a> - repository curator, documentation
+</li>
+</ul>
+</p>
+
+
+</body>
+</html>

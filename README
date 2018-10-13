@@ -1,0 +1,34 @@
+MemMgr - high-performance slabbed memory management in C
+========================================================
+
+Memory Manager is a high-performance memory allocation library
+developed by NetGovern (aka Netmail, aka Messaging Architects).
+It was created to increase performance in programs which request
+and free memory at such high volumes that OS-level malloc/calloc
+calls become a bottleneck.
+
+
+License
+-------
+
+MemMgr is available under the terms of the GNU Lesser General Public License,
+any version(!).  See COPYING and COPYING.LESSER for the latest full license
+texts.
+
+See documentation/ for details, examples and API reference.
+
+
+TODO
+----
+
++ cleanup codebase
+  - license notices in source files
+  - tidy up build files
+  - packaging: cmake find_package()-ability
++ documentation
+  - complete memmgr api reference
+  - add xpl api reference
+  - more and better example programs
++ long-term
+  + split out XPL into its own project(?)
+    - stubs and optional dependency (here and in WJElement!)
