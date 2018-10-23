@@ -1,0 +1,29 @@
+<html>
+<head>
+<title>Memory Manager (memmgr) Documentation: API</title>
+</head>
+<body>
+
+<a href="index.html">Index</a>
+
+<h1>MemMgr Synopsis</h1>
+
+<p>
+  The main memmgr interfaces mimic standard library (and string) functions,
+  but underneath the memory is being allocated in optimized (and, where
+  possible, page-aligned) slabs.  The consumer can leave these details up
+  to memmgr, optimize further by using allocation size hints, or fine-tune
+  further still by specifying pages per slab, number and size of nodes, and
+  other implementation details.
+</p>
+<p>
+  MemMgr is thread-safe, though the threads it is designed around are
+  <a href="xpl.html">XPL</a> threads, for historical reasons.  Decoupling
+  this would take some work, but is certainly possible.
+</p>
+
+
+<a href="index.html">Index</a>
+
+</body>
+</html>
