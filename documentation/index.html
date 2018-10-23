@@ -1,9 +1,24 @@
 <html>
 <head>
-<title>Memory Manager (memmgr) Documentation: index</title>
+<title>Memory Manager (memmgr) Documentation: Index</title>
 </head>
 <body>
 
+  <!--
+- if have tons of certain-size allocs
+  - better to increase slab size, have 3 huge slabs than 27 smaller slabs (100k allocs etc)
+    - why?  rodney could figure out 
+    - lots of slabs maybe searches more ? 
+
+future feature, req kernel mod?:  
+  - buf overrun hard to track down
+    - bad guy fled crime scene, future victim trips over and blows up
+    - in netware, auto double allocation, blank pages between
+      - cross boundary = page fault  (big ol' redzone detected in hardware)  
+- origin pre-thane - preallocate to keep mrb alive during traffic storms
+
+-->
+  
 <h1>About</h1>
 <p>
 MemMgr - high-performance slabbed memory management in C
@@ -11,29 +26,40 @@ MemMgr - high-performance slabbed memory management in C
 <p>
   Memory Manager is a high-performance memory allocation library
   developed by NetGovern (aka Netmail, aka Messaging Architects).
-  It was created to increase performance in programs which request
-  and free memory at such high volumes that OS-level malloc/calloc
-  calls become a bottleneck.
+  It was created to:
+  <ul>
+	<li><strong>increase performance</strong> in programs which request
+	  and free memory at such high volumes that OS-level malloc/calloc
+	  calls become a bottleneck.
+	</li>
+	<li><strong>solve fragmentation</strong> which results from mixed-size
+	  allocations and frees.
+	</li>
+	<li><strong>evaluate and tune</strong> memory usage to handle peak
+	  loads, both increasing speed and reducing memory requirements.
+	</li>
+	<li><strong>help with debugging</strong> common memory bugs including
+	  leaks, double-frees, and buffer overruns.
+  </ul>
 </p>
-<p>
-  MemMgr ("MM" if one is in a rush!) makes use of, and includes,
-  XPL.  XPL is a cross-platform library which abstracts various OS
-  functions and dates back to when Netmail was NIMS and ran on,
-  among other things, Novell Netware.  There is naturally a certain
-  amount of historical memorabilia here.  XPL might (and perhaps should)
-  be split off into a separate project as an optional dependency for
-  memmgr.
-</p>
+  <p>
+	When a process is very busy, allocating memory traditionally becomes slower.
+	When memory allocation becomes slower, a busy process only gets busier.
+	MemMgr can break this vicious cycle!  By
+	using MemMgr's reporting (live usage statistics can be dumped at will, for
+	instance during a service's peak usage) developers can learn the real-world
+	memory requirements of a process, and then tune it to preallocate pools
+	accordingly.
+  </p>
 <p>
   MemMgr has two main modes of operation:
 <ul>
 <li>
-  Slabber - Memory is allocated in page-aligned, speed- and
-  memory-optimized slabs.  Repeated calls to MemMalloc() etc are much
-  faster than allocating directly.
+  Slabber - Memory is allocated in slabs, optimized for running.
+  Repeated calls to MemMalloc() etc are much faster than allocating directly.
 </li>
 <li>
-  Guard - Memory is not speed-optimized.  Each created buffer is
+  Guard - Memory usage is geared for debugging.  Each created buffer is
   padded on either end with bytes which are easy to spot in a debugger,
   to help hunt down and fix tricky bugs.  It is no substitute for
   <a href="http://valgrind.org">valgrind</a>, but is much faster
@@ -48,18 +74,48 @@ MemMgr - high-performance slabbed memory management in C
   and this reporting can be customized so that various consumers can
   specify "owners" of given allocations.
 </p>
+  <p>
+	Memory pools may be used to recycle resources.
+	For example, a pool of connection structures,
+	each with its own library handles, locks, etc, can be pre-initialized, then
+	consumer code can grab and return these structures from and to the pool,
+	without needing to initialize every instance every time.
+  </p>
+  <h1>(Built-in) Dependencies</h1>
+  <p>
+	MemMgr ("MM" if one is in a rush!) makes use of, and includes,
+	XPL.  XPL is a cross-platform library which abstracts various OS
+	functions and dates back to when Netmail was NIMS and ran on,
+	among other things, Novell Netware.  There is naturally a certain
+	amount of historical memorabilia here.
+  </p>
+  <p>
+	XPL might (and perhaps should)
+	be split off into a separate project as an optional dependency for
+	memmgr.  XPL's threading library could be similarly split out.
+  </p>
 
-<h1>License</h1>
-<p>
-Memory Manager and its related libraries may be consumed in any project,
-open or closed, as outlined by the
-<a href="http://www.gnu.org/licenses/lgpl.txt">GNU Lesser
-General Public License</a> (any version).
-Include it as-is and link to it
-from your code, massage it into your own statically-linked package, or use it
-in ways we haven't thought of.  Read the docs/headers, have fun, and if you
-use it for something awesome, let us know about it!  :^)
-</p>
+<h1>License and Guidelines</h1>
+  <p>
+	Memory Manager and its related libraries may be consumed in any project,
+	open or closed, as outlined by the
+	<a href="http://www.gnu.org/licenses/lgpl.txt">GNU Lesser
+	  General Public License
+	</a> (any version, including loophole-ridden ones).
+	Include it as-is and link to it
+	from your code, massage it into your own statically-linked package,
+	or use it in ways we haven't thought of.
+	Read the docs/headers, have fun, and if you
+	use it for something awesome, let us know about it!  :^)
+  </p>
+  <p>
+	MemMgr's contributers and community members are respectfully asked to be
+	civil.  This is not a GNU project, but the
+	<a href="https://www.gnu.org/philosophy/kind-communication.html">
+	  GNU Kind Communications Guidelines
+	</a> are both easy to follow and a good idea in general.  Thank you for your
+	cooperation.
+  </p>
 
 <h1>API</h1>
 <p>
@@ -77,6 +133,13 @@ XPL
 </ul>
 </p>
 
+<h1>Examples</h1>
+<ul>
+  <li>
+	<a href="helloworld.c">helloworld.c</a> - trivial it-works example
+  </li>
+</ul>
+
 <!--
 <h1>Quirks</h1>
 <p>
@@ -92,10 +155,9 @@ XPL
 <h1>Special Thanks</h1>
 <p>
 <ul>
-<li>Thane Diamond - primary memmgr and XPL author</li>
-</ul>
-<ul>
-<li>Rodney Price - help with documentation</li>
+  <li>Thane Diamond - primary memmgr author</li>
+  <li>Peter Bartok, David Smith - XPL authors</li>
+  <li>Rodney Price - XPL author, documentation</li>
 </ul>
 </p>
 <h1>Contact</h1>

@@ -1,6 +1,8 @@
 /*
   This is a silly example, but it demonstrates the use of the "memmgr" library
   in malloc/free style.
+
+  gcc -o helloworld `pkg-config --libs memmgr` helloworld.c
 */
 
 #include <stdio.h>
@@ -14,7 +16,7 @@ int main(int argc, char **argv) {
 
 	MemoryManagerOpen("shmoe");
 
-	tape = MemMalloc(ENOUGH_FOR_ANYBODY);
+	buf = MemMalloc(ENOUGH_FOR_ANYBODY);
 	strncpy(buf, "ecoute et repete, s'il vous plait.", ENOUGH_FOR_ANYBODY - 1);
 	printf("%s\n", buf);
 	MemRelease(&buf);
