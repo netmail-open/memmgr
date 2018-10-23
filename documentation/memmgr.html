@@ -7,6 +7,7 @@
 <a href="index.html">Index</a>
 
 <h1>MemMgr Synopsis</h1>
+
 <p>
   The main memmgr interfaces mimic standard library (and string) functions,
   but underneath the memory is being allocated in optimized (and, where
@@ -21,20 +22,169 @@
   this would take some work, but is certainly possible.
 </p>
 
-<!--
-<h1>Data Structures</h1>
+
+<h1>Definitions</h1>
+
 <p>
-<strong>name</strong>
-desc
+  Signatures are used to initialize memory, and indicate whether the range
+  is illegal to use, free, or being watched.
+  These are intended to be easy to spot in a debugger or hex editor.
+</p>
+<p>
+  From memmgr.h:
+<blockquote><pre>
+#define MEMMGR_SIG_REDZ    0x7a446552
+#define MEMMGR_SIG_ONE     0x2e456e4f
+#define MEMMGR_SIG_FREE    0x65457246
+#define MEMMGR_SIG_ZONE    0x654e6f5a
+#define MEMMGR_SIG_WATCH   0x63546157
+#define MEMMGR_SIG_ING     0x674e6948
+</pre></blockquote>
+</p>
+
+<p>
+  <strong>MemMgrAdvice</strong>
+  is advice for the type of memory being allocated.
+</p>
+<p>
+  From memmgr.h:
+<blockquote><pre>
+typedef enum {
+    MEMMGR_ADVICE_SMALL,
+    MEMMGR_ADVICE_NORMAL,
+    MEMMGR_ADVICE_LARGE
+} MemMgrAdvice;
+</pre></blockquote>
+</p>
+
+<h2>Data Structures</h2>
+
+<p>
+<strong>MemPoolInfo</strong>
+defines the characteristics of a memory pool.  Either "size" or "nodes"
+needs to be zero, and will be calculated using the other and "pages".
 </p>
 <p>
 From memmgr.h:
+<blockquote><pre>
+typedef struct
+{
+    char            *name;  // name of pool
+    int             pages;  // physical pages per slab
+    int             size;   // node size (0 means calculate from number of nodes)
+    int             nodes;  // number of nodes (0 means calculate from node size)
+    int             depth;  // number of slabs before the leak detection kicks in
+    MemMgrAdvice    advice; // system advice, tells the OS what kind of page backing might be needed
+}MemPoolInfo;
+</pre></blockquote>
+</p>
+
+<p>
+  <strong>MemPoolConfig</strong>
+</p>
+<p>
+  From memmgr.h:
+<blockquote><pre>
+typedef struct
+{
+    MemPoolInfo info32;
+    MemPoolInfo info64;
+    MemPoolInfo info128;
+    MemPoolInfo info256;
+    MemPoolInfo info512;
+    MemPoolInfo info1k;
+    MemPoolInfo info2k;
+    MemPoolInfo info4k;
+    MemPoolInfo info8k;
+    MemPoolInfo info16k;
+    MemPoolInfo info32k;
+    MemPoolInfo info64k;
+    MemPoolInfo info128k;
+    MemPoolInfo info256k;
+    MemPoolInfo info512k;
+    MemPoolInfo info1m;
+}MemPoolConfig;
+</pre></blockquote>
+</p>
+
+<p>
+  <strong>_MemInfo</strong>
+  is used to track source file/line information for debugging or reporting.
+</p>
+<p>
+  From memmgr.h:
+<blockquote><pre>
+typedef struct
+{
+    const char    *file;
+    uint32        line;
+}_MemInfo;
+</pre></blockquote>
+</p>
+
+<p>
+  <strong>MemStatistics</strong>
+</p>
+<p>
+  From memmgr.h:
+<blockquote><pre>
+typedef struct _MemStatistics {
+    struct {
+        unsigned long min;
+        unsigned long max;
+        unsigned long count;
+        unsigned long size;
+    } totalAlloc;
+
+    unsigned long pitches;
+    unsigned long hits;
+    unsigned long strikes;
+
+    struct {
+        unsigned long size;
+
+        unsigned long minimum;
+        unsigned long maximum;
+
+        unsigned long allocated;
+    } entry;
+
+    unsigned char *name;
+
+    struct _MemStatistics *next;
+    struct _MemStatistics *previous;
+} MemStatistics;
+</pre></blockquote>
+</p>
+
+<h2>Callbacks</h2>
+
+<p>
+  From memmgr.h:
+<blockquote><pre>
+typedef XplBool (*PoolEntryCB)( void *ptr, void *client );
+typedef XplBool (*PoolEnumerateCB)(void *buffer, size_t size, const char *file, const int line, void *clientData);
+</pre></blockquote>
+</p>
+<p>
+  PoolEntryCB functions can be set so that the consumer is notified (and
+  provided with MemStatistics, if appropriate) when a memory pool is prepared,
+  freed, or destroyed.
+</p>
+
+<!--
+<p>
+  <strong></strong>
+</p>
+<p>
+  From .h:
 <blockquote><pre>
 </pre></blockquote>
 </p>
 -->
 
 
+<!--
 <h1>MemMgr Interfaces</h1>
 <h2>Pool Creation/Destruction</h2>
 <p>
@@ -52,6 +202,11 @@ c
 ex
   </pre></blockquote>
 </p>
+-->
+
+<h1>...</h1>
+
+<a href="index.html">Index</a>
 
 </body>
 </html>
