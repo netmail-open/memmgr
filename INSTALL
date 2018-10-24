@@ -7,7 +7,7 @@ $ make
 # make install
 
 You might want to specify a lib path:
-$ cmake -DLIB_DEST_DIR=/usr/local/lib64
+$ cmake -DLIB_DEST_DIR=/usr/local/lib64 ..
 
 You may also use:
 $ cmake-gui ..
