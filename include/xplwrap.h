@@ -88,11 +88,23 @@ EXPORT int XplWrapMkDir(const char *path, XPL_WRAP_MODE_TYPE mode);
 
 /* Wrappers for 64 bit file access */
 #if defined( LINUX )
+#if defined( UBUNTU )
+
+#define _FILE_OFFSET_BITS 64
+
+# define XplFOpen					fopen
+# define XplFReopen					freopen
+# define XplFOffset					off_t
+# define XplFSeek					fseek
+# define XplFTell					ftell
+
+#else
 # define XplFOpen					fopen64
 # define XplFReopen					freopen64
 # define XplFOffset					off_t
 # define XplFSeek					fseeko
 # define XplFTell					ftello
+#endif
 #else
 # define XplFOpen					fopen
 # define XplFReopen					freopen
