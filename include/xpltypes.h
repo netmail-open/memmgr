@@ -8,7 +8,7 @@
 typedef int XplBool;
 
 #ifndef WIN32
-typedef unsigned long LONG;
+typedef long LONG;
 #endif
 
 /* Windows does not have uint in types.h */
